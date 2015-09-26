@@ -15,6 +15,7 @@
 # limitations under the License.
 #
 import webapp2
+import cgi
 
 form = """
 <form method="post">
@@ -77,6 +78,9 @@ def valid_year(year):
             return year
         else:
             return None
+
+def escape_html(s):
+    return cgi.escape(s, quote=True)
 
 class MainHandler(webapp2.RequestHandler):
 
