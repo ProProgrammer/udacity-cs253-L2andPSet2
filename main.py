@@ -108,7 +108,12 @@ class MainHandler(webapp2.RequestHandler):
         if not (validated_month and validated_day and validated_year):
             self.write_form(error="This doesn't look like valid to me, friend!", month=user_month, day=user_day, year=user_year)
         else:
-            self.response.write("Thanks! That's a totally valid day.")
+            self.redirect('/thanks')
+
+class ThanksHandler(webapp2.RequestHandler):
+
+    def get(self):
+        self.response.write("Thanks! That's a totally valid day.")
 
 # class TestHandler(webapp2.RequestHandler):
 #   def post(self):
@@ -118,4 +123,6 @@ class MainHandler(webapp2.RequestHandler):
 #       self.response.headers['Content-Type'] = 'text/plain'
 #       self.response.write(self.request)
 
-app = webapp2.WSGIApplication([('/', MainHandler)], debug=True)
+app = webapp2.WSGIApplication([('/', MainHandler),
+                            ('/thanks', ThanksHandler)
+                            ], debug=True)
