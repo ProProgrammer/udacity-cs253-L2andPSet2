@@ -85,7 +85,10 @@ def escape_html(s):
 class MainHandler(webapp2.RequestHandler):
 
     def write_form(self, error='', month='', day='', year=''):
-        self.response.write(form % {'error': error, 'month': month, 'day': day, 'year': year})
+        self.response.write(form % {'error': error,
+            'month': escape_html(month),
+            'day': escape_html(day),
+            'year': escape_html(year) })
 
     def get(self):
         # self.response.headers['Content-Type'] = 'text/plain'
