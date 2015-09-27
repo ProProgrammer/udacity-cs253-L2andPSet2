@@ -1,46 +1,71 @@
-<form method="post">
-    <h1>
-        Enter some text to ROT13
-    </h1>
-    
-    <div>
-        <input type='textarea' name='user_input' value=%(rot_input)s>
-    </div>
-    
-    <input type="submit">
 
-    <div>
-        <!-- %(rot_output)s -->
-    </div>
-</form>
+<!DOCTYPE html>
 
+<html>
+  <head>
+    <title>Sign Up</title>
+    <style type="text/css">
+      .label {text-align: right}
+      .error {color: red}
+    </style>
 
-<!-- <form>
-	<select name="q">
-		<option value="1">The number one</option>
-		<option value="2">two</option>
-		<option value="3">three</option>
-	</select>
+  </head>
 
-	<label>
-		One
-		<input type="radio" name="q" value="one">
-	</label>
-	<br>
+  <body>
+    <h2>Signup</h2>
+    <form method="post">
+      <table>
+        <tr>
+          <td class="label">
+            Username
+          </td>
+          <td>
+            <input type="text" name="username" value="">
+          </td>
+          <td class="error">
+            
+          </td>
+        </tr>
 
-	<label>
-		Two
-		<input type="radio" name="q" value="two">
-	</label>
-	<br>
+        <tr>
+          <td class="label">
+            Password
+          </td>
+          <td>
+            <input type="password" name="password" value="">
+          </td>
+          <td class="error">
+            
+          </td>
+        </tr>
 
-	<label>
-		Three
-		<input type="radio" name="q" value="three">
-	</label>
-	<br/>
-	<input type="submit">
-</form> -->
+        <tr>
+          <td class="label">
+            Verify Password
+          </td>
+          <td>
+            <input type="password" name="verify" value="">
+          </td>
+          <td class="error">
+            
+          </td>
+        </tr>
 
-<!-- What if I want to talk about <b>&lt;html&gt;</b> in html? -->
+        <tr>
+          <td class="label">
+            Email (optional)
+          </td>
+          <td>
+            <input type="text" name="email" value="">
+          </td>
+          <td class="error">
+            
+          </td>
+        </tr>
+      </table>
 
+      <input type="submit">
+    </form>
+  </body>
+
+</html>
