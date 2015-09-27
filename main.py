@@ -16,6 +16,7 @@
 #
 import webapp2
 import cgi
+from rot13_implementation import rot13
 
 form = """
 <form method="post">
@@ -41,6 +42,21 @@ form = """
     <div style='color: red'>%(error)s</div>
     <br>
     <br>
+    <input type="submit">
+</form>
+"""
+
+form_rot13 = """
+<form method="post">
+    <h1>
+        Enter some text to ROT13
+    </h1>
+    
+    <div>
+        <textarea name="text" style="height: 100px; width: 400px;">%(rotInput)s</textarea>
+    </div>
+    <br>
+    
     <input type="submit">
 </form>
 """
@@ -115,6 +131,24 @@ class ThanksHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write("Thanks! That's a totally valid day.")
 
+class Rot13Handler(webapp2.RequestHandler):
+
+    def write_form(self, form_rot_input=""):
+        self.response.write(form_rot13 % {
+            'rotInput': escape_html(form_rot_input)
+            })
+
+    def get(self):
+        self.write_form()
+
+    def post(self):
+        rot_input = self.request.get('text')
+        # self.response.write(rot_input)
+        # print 'rot_input:', rot_input
+        rot_output = rot13(rot_input)
+        # self.response.write(rot_output)
+        self.write_form(rot_output)
+
 # class TestHandler(webapp2.RequestHandler):
 #   def post(self):
 #       # q = self.request.get("q")
@@ -124,5 +158,6 @@ class ThanksHandler(webapp2.RequestHandler):
 #       self.response.write(self.request)
 
 app = webapp2.WSGIApplication([('/', MainHandler),
-                            ('/thanks', ThanksHandler)
+                            ('/thanks', ThanksHandler),
+                            ('/pset2/rot13', Rot13Handler)
                             ], debug=True)
